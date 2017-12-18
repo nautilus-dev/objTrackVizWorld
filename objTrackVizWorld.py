@@ -6,6 +6,7 @@ Created on Mon Nov 13 18:10:25 2017
 """
 import sys
 import cv2
+import numpy as np
 
 ## used from https://www.learnopencv.com/object-tracking-using-opencv-cpp-python/
 
@@ -53,10 +54,24 @@ def main(args=sys.argv[1:]):
         print ('Cannot read video file')
         sys.exit()
      
+    # print(type(frame))
+    # print(frame.shape)
+    # getting an initial subset of Areas of interest
+    # np_frame = cv2.imread('video', frame)
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    img_filt = cv2.medianBlur(gray_frame, 5)
+    img_new = np.empty_like(img_filt)
+    print(img_filt.shape)
+    cv2.imshow("imshow", gray_frame)
+    # img_th = cv2.adaptiveThreshold(img_filt,img_new,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY,11,2)
+    img_th = cv2.adaptiveThreshold(img_filt, img_new, 255, adaptive_method=cv2.ADAPTIVE_THRESH_GAUSSIAN_C, thresholdType=cv2.THRESH_BINARY, blockSize=3, param1=5) 
+    contours, hierarchy = cv2.findContours(img_th, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)     
+    
+    print(contours)
+    
     # Define an initial bounding box
     bbox = (287, 23, 86, 320)
- 
-    # Uncomment the line below to select a different bounding box
+
     bbox = cv2.selectROI(frame, False)
  
     # Initialize tracker with first frame and bounding box
