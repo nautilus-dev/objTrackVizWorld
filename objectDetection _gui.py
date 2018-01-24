@@ -11,14 +11,14 @@ from   pyforms.Controls import ControlCheckBoxList
 
 import cv2
 
-class ComputerVisionAlgorithm(BaseWidget):
+class objectDetectionGUI(BaseWidget):
     CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
                "bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
                "dog", "horse", "motorbike", "person", "pottedplant", "sheep",
                "sofa", "train", "tvmonitor"]
 
     def __init__(self):
-        super(ComputerVisionAlgorithm, self).__init__('Eyetracking object detection with Deep Neural Networks')
+        super(objectDetectionGUI, self).__init__('Eyetracking object detection with Deep Neural Networks')
 
         # Definition of the forms fields
         self._videofile = ControlFile('Video')
@@ -28,8 +28,7 @@ class ComputerVisionAlgorithm(BaseWidget):
         self._loadbutton = ControlButton('Load Video')
         self._runbutton = ControlButton('Run')
 
-        # Define the function that will be called when a file is selected
-        # TODO: NOT WORKING!!!
+        # Define the function that will be called when a file is selected ==> Nothing happening for windows here...
         self._videofile.changed = self.__videoFileSelectionEvent
 
         self._loadbutton.value = self.__loadEvent
@@ -79,6 +78,7 @@ class ComputerVisionAlgorithm(BaseWidget):
         """
         After setting the best parameters run the full algorithm
         """
+        # TODO: Implmement runner here.
         self._player.play()
         pass
 
@@ -87,10 +87,12 @@ class ComputerVisionAlgorithm(BaseWidget):
         This is where OpenCV is called to open a selection window in that particular frame
         :return:
         """
+        # TODO: OPEN opencv WINDOW
         print (event)
+        print (self._player.video_index)
         print (x)
         print (y)
         pass
 
 #Execute the application
-if __name__ == "__main__":   pyforms.start_app( ComputerVisionAlgorithm )
+if __name__ == "__main__":   pyforms.start_app(objectDetectionGUI)
