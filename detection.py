@@ -21,7 +21,7 @@ def measure_dist(a, b):
 
 
 
-def detect(input_path, output_path, conf = 0.5, distance=4, A_upper=3.5, A_lower=0.1, out=0.25, killtime=10):
+def detect(input_path, output_path, conf = 0.5, distance=4, A_upper=3.5, A_lower=0.1, out=0.2, killtime=15):
     """conf für Wahrscheinichkeit, dist ist der Nenner für den Abstand der Schwerpunkte (1/dist mal die maximale
     Kantenlänge dard der Punkt springen), A_upper ist die obere Grenze für den Flächeninhalt, A_lower die untere,
     out für die äußeren 25prozent des Bildes, killtime ist die Anzahl der Frames bis ein objekt entfernt wird am Rand)
