@@ -28,7 +28,7 @@ class objectDetectionGUI(BaseWidget):
 
         # Definition of the forms fields
         self._videofile = ControlFile('Video')
-        self._outputfile = ControlFile('Results output file')
+        self._outputfile = ControlDir('Results output folder')
         self._player = ControlPlayer('Player')
         self._loadbutton = ControlButton('Load Video')
         self._annotatebutton = ControlButton('Mark Objects')
@@ -205,7 +205,7 @@ class objectDetectionGUI(BaseWidget):
         if self.bb_selected :
             print("adding an instance of : " + classname)
             self.definedClasses.append(iA.iA(
-                            self._player.video_index, [[self.bb[0], self.bb[1]], [self.bb[2], self.bb[3]]], classname))
+                            self._player.video_index, [[self.bb[0], self.bb[1]], [self.bb[0] + self.bb[2], self.bb[1] + self.bb[3]]], classname))
         self.bb_selected = False
         self.bb_frame = None
         pass
@@ -242,7 +242,7 @@ class objectDetectionGUI(BaseWidget):
         cv2.destroyWindow("Select ROI")
         self.bb_selected = True
         self.bb_selection_window_X = cv2
-        self.bb_frame = cv2.rectangle(self._player.frame, (self.bb[0], self.bb[1]), (self.bb[2], self.bb[3]),
+        self.bb_frame = cv2.rectangle(self._player.frame, (self.bb[0], self.bb[1]), (self.bb[0] + self.bb[2], self.bb[1] + self.bb[3]),
                                       (255, 0, 0), 2)
         self._player.frame = self.bb_frame
         pass
