@@ -34,8 +34,8 @@ class objectDetectionGUI(BaseWidget):
         self._annotatebutton = ControlButton('Mark Objects')
         self._runbutton = ControlButton('Run')
 
-        self._monitorX = ControlNumber('Resolution of Monitor X', default=1920, minimum=640, maximum=4000)
-        self._monitorY = ControlNumber('Resolution of Monitor Y', default=1080, minimum=480, maximum=4000)
+        self._monitorX = ControlNumber('Resolution of Playback-Monitor X', default=1920, minimum=640, maximum=4000)
+        self._monitorY = ControlNumber('Resolution of Playback-Monitor Y', default=1080, minimum=480, maximum=4000)
 
         # Classes
         self._classBackground = ControlButton('background')
@@ -81,9 +81,6 @@ class objectDetectionGUI(BaseWidget):
         self._classSofa.value = self.__getClassValuesSofa
         self._classTrain.value = self.__getClassValuesTrain
         self._classTvmonitor.value = self.__getClassValuesTvmonitor
-
-        # Define the function that will be called when a file is selected ==> Nothing happening for windows here...
-        self._videofile.changed = self.__videoFileSelectionEvent
 
         self._loadbutton.value = self.__loadEvent
 
@@ -173,19 +170,6 @@ class objectDetectionGUI(BaseWidget):
     def __getClassValuesTvmonitor(self):
         self.__getClassValues('tvmonitor')
 
-
-
-    def __videoFileSelectionEvent(self):
-        """
-        When the videofile is selected instantiate the video in the player
-        """
-        """ self._player.value = self._videofile.value """
-        self._player.value = cv2.VideoCapture(self._videofile.value)
-        print(self._player.video_index)
-        print(self._player.max)
-        print(self._player.fps)
-
-
     def __processFrame(self, frame):
         """
         Do some processing to the frame and return the result frame
@@ -195,6 +179,8 @@ class objectDetectionGUI(BaseWidget):
 
     def __loadEvent(self):
         self._player.value = cv2.VideoCapture(self._videofile.value)
+        #self._player.video_index = int(0)
+        self._player.update_frame()
         print(self._player.video_index)
         print(self._player.max)
         print(self._player.fps)
@@ -237,7 +223,9 @@ class objectDetectionGUI(BaseWidget):
         """
         # TODO: Check wheter the video is loaded otherwise the app crashes
 
-        cv2.namedWindow("Select ROI", cv2.WINDOW_NORMAL)
+        #cv2.namedWindow("Select ROI", cv2.WINDOW_NORMAL)
+        cv2.namedWindow("Select ROI", cv2.WND_PROP_FULLSCREEN)
+        cv2.setWindowProperty("Select ROI", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
         self.bb = cv2.selectROI("Select ROI", self._player.frame)
         cv2.destroyWindow("Select ROI")
         self.bb_selected = True
