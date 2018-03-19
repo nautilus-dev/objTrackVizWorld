@@ -98,7 +98,7 @@ class objectDetectionGUI(BaseWidget):
             ('_videofile', '_outputfile'),
             ('_loadbutton', '_runbutton', '_monitorX', '_monitorY',),
             ([' ', '_classBackground', '_classAeroplane', '_classBicycle', '_classBird', '_classBoat', '_classBottle',
-              '_classBus', '_classCar', '_classCat', '_classChair', '_classCow', '_classDiningTable', '_classDog',
+              '_classBus', '_classCar', '_classCat', '_classChair', '_classCow', '_classDiningTable', '_classDog','_classHorse',
               '_classMotorbike', '_classPerson', '_classPottedPlant', '_classSheep', '_classSofa', '_classTrain',
               '_classTvmonitor', ' ', ' '], '_player' )
         ]
