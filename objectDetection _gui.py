@@ -207,7 +207,7 @@ class objectDetectionGUI(BaseWidget):
                     c = int((x / int(self._monitorX.value)) * self.bb[2])
                     d = int((y / int(self._monitorY.value)) * self.bb[3])
             self.definedClasses.append(iA.iA(
-                            self._player.video_index, [[a, b], [a + c, b + d]], classname))
+                            self._player.video_index - 1, [[a, b], [a + c, b + d]], classname))
         self.bb_selected = False
         self.bb_frame = None
         pass
