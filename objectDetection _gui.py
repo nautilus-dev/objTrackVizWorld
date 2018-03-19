@@ -190,8 +190,24 @@ class objectDetectionGUI(BaseWidget):
         # definedClasses
         if self.bb_selected :
             print("adding an instance of : " + classname)
+            y, x = self._player.frame.shape[:2]
+            a = self.bb[0]
+            b = self.bb[1]
+            c = self.bb[2]
+            d = self.bb[3]
+            if x != int(self._monitorX.value):
+                if x > int(self._monitorX.value):
+                    a = (int(self._monitorX.value) / x) * self.bb[0]
+                    b = (int(self._monitorY.value) / y) * self.bb[1]
+                    c = (int(self._monitorX.value) / x) * self.bb[2]
+                    d = (int(self._monitorY.value) / y) * self.bb[3]
+                elif x < int(self._monitorX.value):
+                    a = (x / int(self._monitorX.value)) * self.bb[0]
+                    b = (y / int(self._monitorY.value)) * self.bb[1]
+                    c = (x / int(self._monitorX.value)) * self.bb[2]
+                    d = (y / int(self._monitorY.value)) * self.bb[3]
             self.definedClasses.append(iA.iA(
-                            self._player.video_index, [[self.bb[0], self.bb[1]], [self.bb[0] + self.bb[2], self.bb[1] + self.bb[3]]], classname))
+                            self._player.video_index, [[a, b], [a + c, b + d]], classname))
         self.bb_selected = False
         self.bb_frame = None
         pass
