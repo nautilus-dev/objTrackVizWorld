@@ -197,15 +197,15 @@ class objectDetectionGUI(BaseWidget):
             d = self.bb[3]
             if x != int(self._monitorX.value):
                 if x > int(self._monitorX.value):
-                    a = (int(self._monitorX.value) / x) * self.bb[0]
-                    b = (int(self._monitorY.value) / y) * self.bb[1]
-                    c = (int(self._monitorX.value) / x) * self.bb[2]
-                    d = (int(self._monitorY.value) / y) * self.bb[3]
+                    a = int((int(self._monitorX.value) / x) * self.bb[0])
+                    b = int((int(self._monitorY.value) / y) * self.bb[1])
+                    c = int((int(self._monitorX.value) / x) * self.bb[2])
+                    d = int((int(self._monitorY.value) / y) * self.bb[3])
                 elif x < int(self._monitorX.value):
-                    a = (x / int(self._monitorX.value)) * self.bb[0]
-                    b = (y / int(self._monitorY.value)) * self.bb[1]
-                    c = (x / int(self._monitorX.value)) * self.bb[2]
-                    d = (y / int(self._monitorY.value)) * self.bb[3]
+                    a = int((x / int(self._monitorX.value)) * self.bb[0])
+                    b = int(y / int(self._monitorY.value)) * self.bb[1])
+                    c = int((x / int(self._monitorX.value)) * self.bb[2])
+                    d = int((y / int(self._monitorY.value)) * self.bb[3])
             self.definedClasses.append(iA.iA(
                             self._player.video_index, [[a, b], [a + c, b + d]], classname))
         self.bb_selected = False
