@@ -203,7 +203,7 @@ class objectDetectionGUI(BaseWidget):
                     d = int((int(self._monitorY.value) / y) * self.bb[3])
                 elif x < int(self._monitorX.value):
                     a = int((x / int(self._monitorX.value)) * self.bb[0])
-                    b = int(y / int(self._monitorY.value)) * self.bb[1])
+                    b = int((y / int(self._monitorY.value)) * self.bb[1])
                     c = int((x / int(self._monitorX.value)) * self.bb[2])
                     d = int((y / int(self._monitorY.value)) * self.bb[3])
             self.definedClasses.append(iA.iA(
