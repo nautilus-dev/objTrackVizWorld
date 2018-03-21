@@ -1,6 +1,11 @@
 from pyforms 			import BaseWidget
 from pyforms.Controls 	import *
 import pyforms
+from pysettings import conf
+import pyforms.settings as settings
+conf += settings
+
+import loggingbootstrap
 
 import cv2
 import iA
@@ -97,8 +102,8 @@ class objectDetectionGUI(BaseWidget):
         self._formset = [
             ('_videofile', '_outputfile'),
             ('_loadbutton', '_runbutton', '_monitorX', '_monitorY',),
-            ([' ', '_classBackground', '_classAeroplane', '_classBicycle', '_classBird', '_classBoat', '_classBottle',
-              '_classBus', '_classCar', '_classCat', '_classChair', '_classCow', '_classDiningTable', '_classDog','_classHorse',
+            ([' ', '_classAeroplane', '_classBicycle', '_classBird', '_classBoat', '_classBottle', '_classBus',
+              '_classCar', '_classCat', '_classChair', '_classCow', '_classDiningTable', '_classDog', '_classHorse',
               '_classMotorbike', '_classPerson', '_classPottedPlant', '_classSheep', '_classSofa', '_classTrain',
               '_classTvmonitor', ' ', ' '], '_player' )
         ]
